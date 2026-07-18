@@ -59,3 +59,66 @@ In a public blockchain, different types of computers (nodes) participate in main
 - Improves efficiency of transaction and block dissemination.
 
 ---
+
+# How the Gossip Protocol Works in Blockchain Networks
+
+The **gossip protocol** is the communication mechanism that enables blockchain nodes to share information efficiently and securely. It governs how transactions, blocks, and peer data propagate across the network.
+
+---
+
+## 🔄 Information Shared via Gossip
+- **Transactions**  
+- **Blocks**  
+- **Peer addresses**  
+- **Network status**  
+
+---
+
+## 🌐 Network Architecture
+- **Public blockchains** use a **peer-to-peer (P2P)** architecture. Connections are opportunistic, randomized, and dynamic.  
+- **Permissioned blockchains** may adopt a **hub-and-spoke** architecture for controlled communication.  
+- P2P design eliminates single points of failure, ensuring resilience and decentralization.  
+- Each peer stores and maintains its own data independently.  
+
+---
+
+## ⚙️ Connection Management
+- Nodes limit concurrent connections to optimize hardware resources and mitigate **DoS attacks**.  
+- Example: In the **Bitcoin network**, the default maximum is **125 connections** (117 inbound, 8 outbound).  
+- **Outbound connections** are strictly managed, authenticated, and randomized.  
+- **Inbound connections** are open until the maximum limit is reached.  
+
+---
+
+## 🛠️ Node Onboarding Process
+When a new node joins the network, it follows a multi-step process:
+
+1. **Initial boot-up** of the node.  
+2. **Query seed nodes** to obtain IP addresses of active peers.  
+   - Bitcoin source code includes hardcoded domain names of seed nodes.  
+   - If querying fails, fallback IP addresses are used.  
+3. The node stores IPs in two internal tables:  
+   - **New Table** → untrusted addresses.  
+   - **Tried Table** → trusted addresses.  
+4. The node queries active peers using these IPs.  
+5. The peers return thousands of additional IP addresses, expanding the node’s connectivity.  
+
+---
+
+## 📡 Gossip Protocol Mechanics
+- Defined as a **set of rules and logic** embedded in blockchain source code.  
+- Example rule: *Pick 3 random connected peers every 100 milliseconds.*  
+- When a transaction is issued:  
+  1. A full node receives, verifies, and stores it in the **mempool**.  
+  2. The node gossips the transaction to its neighbors.  
+  3. Each neighbor repeats the process.  
+  4. Within seconds, the transaction propagates across the entire network.  
+
+---
+
+## ⏱️ Propagation Characteristics
+- Each transaction has a **unique ID**, preventing infinite rebroadcast loops.  
+- If a node already has a transaction, it ignores and stops forwarding it.  
+- **Bitcoin transaction propagation time**: typically **1–2 seconds**.  
+
+---
