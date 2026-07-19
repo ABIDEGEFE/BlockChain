@@ -122,3 +122,20 @@ When a new node joins the network, it follows a multi-step process:
 - **Bitcoin transaction propagation time**: typically **1–2 seconds**.  
 
 ---
+
+# Broadcast Mechanism in Blockchain Networks
+
+When a transaction or block is **broadcast**, does it travel through the normal Internet (routers, ISPs, TCP/IP), or does blockchain have its own dedicated network?
+
+- Blockchain does not have its own dedicated network configured to route transactions and blockchain-related data. Instead, it utilizes the normal Internet infrastructure, starting from the user’s device, traveling through ISP routers, and reaching the full node as the destination. This connection is governed by the **TCP/IP protocol**, like any other Internet connection. The only difference is the destination.  
+- The TCP/IP connection is not limited to wallet–full node communication. It also governs the broadcast of data once it is validated and stored by a full node.  
+- The blockchain network is an **overlay network** built on top of the Internet. An overlay network is a virtual network formed by applications that communicate over existing infrastructure.  
+- The physical Internet provides connectivity, while blockchain software determines which peers to connect to and what messages to exchange.  
+- Configuring a reachable full node requires:  
+  1. Opening a specific port (e.g., for Bitcoin it is **8333**)  
+  2. Setting up firewall rules  
+  3. Maintaining a stable Internet connection  
+- Internet infrastructure moves the data from one computer to another.  
+- The **Gossip Protocol** decides which blockchain peers should receive and forward the transaction.  
+
+---
