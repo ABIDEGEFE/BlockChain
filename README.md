@@ -139,3 +139,30 @@ When a transaction or block is **broadcast**, does it travel through the normal 
 - The **Gossip Protocol** decides which blockchain peers should receive and forward the transaction.  
 
 ---
+
+# What Cryptocurrency Actually Is
+- **Cryptocurrency** is a record of transaction history that utilizes cryptography to secure its processes. There is no actual “coin” in the network; instead, the blockchain stores the history of who can spend how much value.  
+- Ownership of cryptocurrency means the blockchain records one or more transaction outputs that can be spent by someone who can verify the signature using corresponding public keys. It is essentially the authority to access and manage your transactions through the blockchain network, enabling spending according to blockchain rules.  
+
+---
+
+# What Is Cryptography?
+- **Cryptography** is the science of hiding or securing information from public view. Blockchain uses **asymmetric cryptography**, which involves two mathematically linked keys: a private key and a public key.  
+- The **private key** is a large, randomly generated number derived from an elliptic curve graph.  
+- The **generator point** is a random, publicly known coordinate point on the curve.  
+- The **public key** is a coordinate point calculated using the private key and the generator point.  
+- The sender creates a **digital signature** using the private key and the hashed value of the actual data. The sender then transmits the data, public key, and signature to the receiver.  
+- The receiver uses these public values and plugs them into a multi-variable equation to verify the signature’s validity.  
+- The signature consists of two numbers (**s, r**). The receiver attempts to derive the coordinating point (**x, y**) and applies the final check:  
+
+```text
+if s == x:
+    valid
+else:
+    invalid
+```
+
+- A random number called a **nonce** is generated for every transaction. This nonce is used to generate one of the signature’s numbers (**s**).  
+- Reusing the same nonce for at least two transactions gives attackers a significant advantage in calculating the hidden private key. Therefore, the nonce must be random and unique for every transaction.  
+
+---
