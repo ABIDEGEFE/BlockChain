@@ -166,3 +166,26 @@ else:
 - Reusing the same nonce for at least two transactions gives attackers a significant advantage in calculating the hidden private key. Therefore, the nonce must be random and unique for every transaction.  
 
 ---
+
+# What Triggers Block Creation?
+
+- Before understanding what triggers miner nodes to create a block, it is important to understand **why miners build blocks for the network**. The answer is simple: they receive **network rewards (minted coins)** and **transaction fees**.  
+- In the Bitcoin blockchain network, there is no specific moment when miners begin creating a block. Block creation is a **continuous process**, occurring 24 hours a day, every second.  
+
+---
+
+## 🔨 Block Creation Process
+1. A transaction occurs (e.g., *A sends 5 BTC to B*).  
+2. Nodes actively listen for newly incoming transactions.  
+3. The transaction is received and placed into the **mempool** (waiting list of transactions).  
+4. Miner nodes randomly select transactions from the mempool to create a **candidate block**. Miners typically prioritize transactions with higher fees to maximize profitability.  
+5. Miners begin solving complex mathematical problems. By combining block data with a **nonce** (a number to be guessed) and hashing them with **SHA-256**, they attempt to satisfy the network rule known as the **difficulty target**.  
+6. The node that finds the correct nonce immediately broadcasts the valid block. Other nodes verify it and append it to the blockchain if valid. Once confirmed, miners discard the processed transactions from their mempool and candidate block.  
+
+---
+
+## ⚔️ Handling Conflicts
+- If two miners solve the mathematical puzzle and broadcast their blocks simultaneously, the network may temporarily split, with miners appending different versions of the blockchain.  
+- This difference is resolved once the next block is created and broadcast. The **longest chain rule** applies: miners adopt the version of the blockchain with the greater length, ensuring consensus across the network.  
+
+---
