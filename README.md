@@ -189,3 +189,23 @@ else:
 - This difference is resolved once the next block is created and broadcast. The **longest chain rule** applies: miners adopt the version of the blockchain with the greater length, ensuring consensus across the network.  
 
 ---
+
+# What Is Merkle Root and Merkle Tree?
+
+- Each transaction fetched from the mempool to be stored in a candidate block must be **hashed**. A block may contain **2,000–4,000 transactions**, and the block itself must be identified by a single hash value so that any change in the block can be detected easily. Any modification would completely alter the representative hash of the block.  
+- It is daunting and inefficient to hash every transaction and combine them into one single hash for the block. For example, when a client needs to verify that a certain transaction is valid or included in a specific block, the full node would otherwise have to send all transactions of that block so the client could re-calculate and validate the data. This is where the **Merkle tree** and **Merkle root** concepts come in.  
+
+---
+
+## 🌳 Merkle Tree
+- A Merkle tree is a **data structure** that organizes transactions in a tree form.  
+- When viewed upside down, it resembles branches and a root.  
+- Every transaction hash is a **leaf**, and the combined hash of all leaves is called the **Merkle root**.  
+
+---
+
+## ⚡ Importance of Merkle Trees
+- Merkle trees are crucial for efficiently validating a single transaction without requiring the download of the entire block.  
+- This structure ensures scalability and security by enabling lightweight verification of data integrity.  
+
+---
