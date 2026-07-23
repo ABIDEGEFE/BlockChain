@@ -209,3 +209,19 @@ else:
 - This structure ensures scalability and security by enabling lightweight verification of data integrity.  
 
 ---
+
+# How Previous Block Hash Links Blocks Chronologically to Create an Unchangeable Chain
+
+- First, let’s understand what a **block hash** is: it is the hash value of the block header. The header contains the **nonce number**, **Merkle root**, **previous block hash**, **timestamp**, and other related data.  
+- Every block in the blockchain points backward to the previous block by storing its hash as the **previous hash**. This cryptographic design creates a mechanical link between blocks.  
+- If someone attempts to alter the data in a block, its hash value changes completely. Since the next block stores the original hash value as its previous hash, the mismatch is immediately detected.  
+- Nodes are designed to continuously validate the chain. When a mismatch occurs, they act according to blockchain rules: the invalid block and its subsequent blocks are automatically discarded, and only the last honest block is retained to continue receiving valid blocks from honest peers.  
+
+---
+
+## 🔗 Security of Block Hashes
+- A block hash is not just a random hash value; it must satisfy the **network difficulty target** at the time of creation.  
+- Altering block data is not only technically complex but also requires immense financial resources. Attackers would need enormous computing power to re-execute **Proof of Work (PoW)** while creating new blocks.  
+- This makes changing data in the blockchain **nearly impossible**, ensuring immutability and trust in the system.  
+
+---
