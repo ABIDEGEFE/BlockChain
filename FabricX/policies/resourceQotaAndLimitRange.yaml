@@ -5,12 +5,12 @@ metadata:
   namespace: fabricx-dev
 spec:
   hard:
-    requests.cpu: "8"
-    requests.memory: 12Gi
-    limits.cpu: "16"
-    limits.memory: 16Gi
-    persistentvolumeclaims: "20"
-    requests.storage: 40Gi
+    requests.cpu: "16" # Pods in this namespace are allowed to request for 16 cpu cores in total
+    requests.memory: 32Gi # Pods in this namespace are allowed to request for 32 Gi of memory in total
+    limits.cpu: "32" # Pods in this namespace are not allowed to use above 32 cpu cores
+    limits.memory: 48Gi # Pods in this namespace are not allowed to use above 48 Gi of memory
+    persistentvolumeclaims: "40" # Pods in this namespace are allowed to have up to 40 vouchers to request for permanent storage(PV)
+    requests.storage: 80Gi # Pods in this namespace are allowed to request up to 80Gi
 
 ---
 apiVersion: v1
@@ -22,11 +22,12 @@ spec:
   limits:
     - type: Container
       defaultRequest:
-        cpu: 100m
-        memory: 128Mi
+        cpu: 100m # default request cpu core for containers which automatically assigned by k8s if developers forget assign it
+        memory: 128Mi # default request of memory for containers which automatically assigned by k8s if developers forget assigning it
       default:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 500m # default limit of cpu which automatically assigned by k8s if developers forget assigning it
+        memory: 512Mi # default limit of memory which automatically assigned by k8s if developers forget assigning it
       max:
-        cpu: "4"
-        memory: 4Gi
+        cpu: "4" # Maximum amount of cpu core allowed to be assigned for a container
+        memory: 4Gi # Maximum amount of memory allowed to be assigned for a container
+
